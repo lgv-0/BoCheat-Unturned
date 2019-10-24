@@ -93,3 +93,7 @@ ___
   - Chat Spammer
   - __Skin Changer__
     - Items will be added to in-game inventory, from there, equip them, and they will automatically apply in-game.
+
+Credits:
+lgv-0
+stagfag
