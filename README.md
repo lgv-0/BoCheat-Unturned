@@ -52,6 +52,7 @@ ___
   - Reduced Flashbang
   - Nightvision
   - Bullet Colors
+  - Chams
 ___
 - Vehicles
   - Fly
