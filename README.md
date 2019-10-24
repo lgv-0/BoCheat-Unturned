@@ -24,7 +24,6 @@ ___
   - LegitBot
     - Visible Check
     - Drop Calculator
-    - Position Prediction
     - Smoothing
   - RageBot
     - Fire Through Walls
