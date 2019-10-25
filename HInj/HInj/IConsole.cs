@@ -6,8 +6,6 @@ using UnityEngine;
 
 namespace HInj
 {
-    //tHIS Whole class is ugh. When the game upated unity I believe, the entire method for
-    //grabbing console changed so you know, it's completely messed up now, but it still pops up so
     public class IConsole
     {
         //Called when console recieves a command
