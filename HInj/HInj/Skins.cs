@@ -1,4 +1,4 @@
-﻿using SDG.Unturned;
+using SDG.Unturned;
 using System.Collections.Generic;
 using System.Linq;
 using Harmony;
@@ -102,11 +102,12 @@ namespace HInj
         };
 
         //Literal function for putting items in our inventory when steam transmits them
+        [HarmonyPatch(typeof(TempSteamworksEconomy), "onInventoryResultReady")]
         public class onInvResultReady
         {
-            public static bool Prefix([HarmonyArgument("callback")] ref SteamInventoryResultReady_t callback,
-                [HarmonyArgument("inventoryResult")] ref SteamInventoryResult_t ___inventoryResult,
-                [HarmonyArgument("dynamicInventoryDetails")] ref Dictionary<ulong, DynamicEconDetails> ___dynamicInventoryDetails,
+            public static bool Prefix(ref SteamInventoryResultReady_t callback,
+                ref SteamInventoryResult_t ___inventoryResult,
+                ref Dictionary<ulong, DynamicEconDetails> ___dynamicInventoryDetails,
                 TempSteamworksEconomy __instance)
             {
                 bool inst = false;
@@ -154,10 +155,7 @@ namespace HInj
                         });
 
                     __instance.consolidateStacks();
-                    if (__instance.onInventoryRefreshed != null)
-                    {
-                        __instance.onInventoryRefreshed();
-                    }
+                    __instance.onInventoryRefreshed?.Invoke();
                     __instance.isInventoryAvailable = true;
                     Provider.isLoadingInventory = false;
                     SteamInventory.DestroyResult(___inventoryResult);
