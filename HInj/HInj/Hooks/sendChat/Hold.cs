@@ -1,10 +1,11 @@
-﻿using Harmony;
+using Harmony;
 using SDG.Unturned;
 using System.Threading;
 using UnityEngine;
 
 namespace HInj.Hooks
 {
+    [HarmonyPatch(typeof(ChatManager), "sendChat", new System.Type[] { typeof(EChatMode), typeof(string) })]
     public class sendChat
     {
         public static Thread spammer = new Thread(xThread);
@@ -25,7 +26,7 @@ namespace HInj.Hooks
             }
         }
 
-        public static bool Prefix([HarmonyArgument("mode")] EChatMode mode, [HarmonyArgument("text")] string text, ref ChatManager ___manager)
+        public static bool Prefix(EChatMode mode, string text, ref ChatManager ___manager)
         {
             //Todo: Big switch statement with default array
             if (text.Contains("_spam"))
