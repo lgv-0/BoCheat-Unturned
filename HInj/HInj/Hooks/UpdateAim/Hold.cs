@@ -1,21 +1,22 @@
-﻿using Harmony;
+using Harmony;
 using SDG.Unturned;
 using UnityEngine;
 
 namespace HInj.Hooks
 {
+    [HarmonyPatch(typeof(PlayerLook), "updateAim", new System.Type[] { typeof(float) })]
     public class UpdateAim
     {
-        public static bool Prefix([HarmonyArgument("delta")] float delta)
+        public static bool Prefix(float delta)
         {
             if (!Global.MiscSettings.NoRecoilSway || Global.AllOff)
                 return true;
 
             //Force aim specifically to have no sway
-            if ((UnityEngine.Object)Player.player.movement.getVehicle() != (UnityEngine.Object)null && Player.player.movement.getVehicle().passengers[Player.player.movement.getSeat()].turret != null && Player.player.movement.getVehicle().passengers[Player.player.movement.getSeat()].turret.useAimCamera)
+            if (Player.player.movement.getVehicle() != null && Player.player.movement.getVehicle().passengers[Player.player.movement.getSeat()].turret != null && Player.player.movement.getVehicle().passengers[Player.player.movement.getSeat()].turret.useAimCamera)
             {
                 Passenger passenger = Player.player.movement.getVehicle().passengers[Player.player.movement.getSeat()];
-                if ((UnityEngine.Object)passenger.turretAim != (UnityEngine.Object)null)
+                if (passenger.turretAim != null)
                 {
                     Player.player.look.aim.position = passenger.turretAim.position;
                     Player.player.look.aim.rotation = passenger.turretAim.rotation;

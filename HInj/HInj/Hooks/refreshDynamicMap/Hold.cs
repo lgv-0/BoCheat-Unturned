@@ -1,8 +1,10 @@
-﻿using SDG.Unturned;
+using Harmony;
+using SDG.Unturned;
 using System.Collections.Generic;
 
 namespace HInj.Hooks
 {
+    [HarmonyPatch(typeof(PlayerDashboardInformationUI), "refreshDynamicMap")]
     class refreshDynamicMap
     {
         public static List<Steamworks.CSteamID> f = new List<Steamworks.CSteamID>();

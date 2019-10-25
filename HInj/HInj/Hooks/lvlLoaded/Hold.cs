@@ -1,4 +1,4 @@
-﻿using Harmony;
+using Harmony;
 using SDG.Framework.Translations;
 using SDG.Unturned;
 using System;
@@ -7,12 +7,13 @@ using System.Text;
 
 namespace HInj.Hooks
 {
+    [HarmonyPatch(typeof(Provider), "onLevelLoaded", new Type[] { typeof(int) })]
     public class lvlLoaded
     {
-        public static bool Prefix([HarmonyArgument("level")] int level,
-            [HarmonyArgument("critMods")] ref List<SDG.Framework.Modules.Module> ___critMods,
-            [HarmonyArgument("modBuilder")] ref StringBuilder ___modBuilder,
-            [HarmonyArgument("_serverPasswordHash")] ref byte[] ____serverPasswordHash)
+        public static bool Prefix(int level,
+            ref List<SDG.Framework.Modules.Module> ___critMods,
+            ref StringBuilder ___modBuilder,
+            ref byte[] ____serverPasswordHash)
         {
             if (level == 2)
             {

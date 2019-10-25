@@ -216,7 +216,8 @@ namespace HInj
                     if (aur == null)
                         aur = (Transform)typeof(LevelLighting).GetField("auroraBorealisTransform", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
                     aur.gameObject.SetActive(true);
-                    aur.GetComponent<MeshRenderer>().material.SetFloat("_Intensity", 85);
+                    //Intensity seems to be modified as of 10/25/2019 - Editing this causes massive flickering arguments
+                    //aur.GetComponent<MeshRenderer>().material.SetFloat("_Intensity", 85);
 
                     lightComp.intensity = Global.VisSettings.NightLight;
                     lightGameObject.SetActive(true);

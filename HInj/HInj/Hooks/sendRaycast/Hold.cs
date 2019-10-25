@@ -1,11 +1,12 @@
-﻿using Harmony;
+using Harmony;
 using SDG.Unturned;
 
 namespace HInj.Hooks
 {
+    [HarmonyPatch(typeof(PlayerInput), "sendRaycast", new System.Type[] { typeof(RaycastInfo) })]
     public class sendRaycast
     {
-        public static bool Prefix([HarmonyArgument("info")] ref RaycastInfo info)
+        public static bool Prefix(ref RaycastInfo info)
         {
             if (Global.AllOff)
                 return true;

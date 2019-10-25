@@ -1,14 +1,15 @@
-﻿using Harmony;
+using Harmony;
 using SDG.Unturned;
 using System.Diagnostics;
 using UnityEngine;
 
 namespace HInj.Hooks
 {
+    [HarmonyPatch(typeof(LevelLighting), "isPositionUnderwater", new System.Type[] { typeof(Vector3)})]
     public class IsPositionUnderwater
     {
         static float reg = 0f;
-        public static void Prefix([HarmonyArgument("position")] Vector3 position)
+        public static void Prefix(Vector3 position)
         {
             reg = LevelLighting.seaLevel;
 

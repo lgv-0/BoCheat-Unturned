@@ -1,14 +1,15 @@
-﻿using Harmony;
+using Harmony;
 using SDG.Unturned;
 using System.Reflection;
 using UnityEngine;
 
 namespace HInj.Hooks
 {
+    [HarmonyPatch(typeof(PlayerUI), "stun", new System.Type[] { typeof(float) })]
     public class Stun
     {
         //Custom stun
-        public static bool Prefix([HarmonyArgument("amount")] float amount)
+        public static bool Prefix(float amount)
         {
             if (Global.AllOff)
                 return true;
@@ -22,7 +23,7 @@ namespace HInj.Hooks
             typeof(PlayerUI).GetField("stunColor", BindingFlags.NonPublic | BindingFlags.Static)
              .SetValue(null, new Color(1f, 1f, 1f, inc));
 
-            ((Component)MainCamera.instance).GetComponent<AudioSource>()
+            (MainCamera.instance).GetComponent<AudioSource>()
                 .PlayOneShot((AudioClip)Resources.Load("Sounds/General/Stun"), inc);
         }
     }

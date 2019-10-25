@@ -1,10 +1,12 @@
-﻿using SDG.Unturned;
+using Harmony;
+using SDG.Unturned;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 
 namespace HInj.Hooks
 {
+    [HarmonyPatch(typeof(UseableGun), "ballistics")]
     public class Ballistics
     {
         public static bool Prefix(UseableGun __instance, ref List<BulletInfo> ___bullets, ref int ___hitmarkerIndex, ref ParticleSystem ___tracerEmitter,
@@ -47,15 +49,12 @@ namespace HInj.Hooks
                         BulletInfo info = ___bullets[i];
                         if (Global.AimSettings.RageBot && RageBot.FocusTarget != null && info2 != null && info2.player == RageBot.FocusTarget.player)
                         {
-                            if (Global.AimSettings.RBypassOne)
+                            if (!((info.steps * __instance.equippedGunAsset.ballisticTravel) < dst))
                             {
-                                if (!((info.steps * __instance.equippedGunAsset.ballisticTravel) < dst))
-                                {
-                                    Player.player.input.sendRaycast(info2);
-                                    Player.player.input.sendRaycast(info2);
-                                    info.steps = 254;
-                                    goto prx;
-                                }
+                                Player.player.input.sendRaycast(info2);
+                                Player.player.input.sendRaycast(info2);
+                                info.steps = 254;
+                                goto prx;
                             }
                         }
 
