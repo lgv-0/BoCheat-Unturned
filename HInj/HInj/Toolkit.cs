@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using SDG.Unturned;
 using System.Reflection;
 
@@ -53,16 +53,6 @@ namespace HInj
             }
         }
 
-        //Sends a default hitmark to the player
-        public static void Hitmark(bool Critical)
-        {
-            PlayerLifeUI.hitmarkers[0].lastHit = Time.realtimeSinceStartup;
-            PlayerLifeUI.hitmarkers[0].hit = Critical ? EPlayerHit.CRITICAL : EPlayerHit.ENTITIY;
-
-            if (Critical)
-                ((Component)MainCamera.instance).GetComponent<AudioSource>().PlayOneShot((AudioClip)Resources.Load("Sounds/General/Hit"), 0.5f);
-        }
-
         public static void PatchCreditMenu()
         {
             FieldInfo dat = typeof(MenuCreditsUI).GetField("credits", BindingFlags.NonPublic | BindingFlags.Static);
@@ -71,7 +61,7 @@ namespace HInj
             //Make a new list
             credits = new CreditsContributorContributionPair[]
             {
-                new CreditsContributorContributionPair("Sphenix", "uh"),
+                new CreditsContributorContributionPair("lgv-0", "uh"),
                 new CreditsContributorContributionPair("Cervine", "oh")
             };
 
