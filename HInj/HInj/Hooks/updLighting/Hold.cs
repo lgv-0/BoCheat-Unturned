@@ -1,7 +1,9 @@
-﻿using SDG.Unturned;
+using Harmony;
+using SDG.Unturned;
 
 namespace HInj.Hooks
 {
+    [HarmonyPatch(typeof(LevelLighting), "updateLighting")]
     public class updLighting
     {
         public static float Btime = 0;
