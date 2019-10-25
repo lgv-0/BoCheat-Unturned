@@ -1,8 +1,10 @@
-﻿using SDG.Unturned;
+using Harmony;
+using SDG.Unturned;
 using UnityEngine;
 
 namespace HInj.Hooks
 {
+    [HarmonyPatch(typeof(InteractableDoor), "updateToggle", new System.Type[] { typeof(bool) })]
     public class DoorAnimation
     {
         //DOOR
