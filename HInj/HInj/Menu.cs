@@ -28,6 +28,12 @@ namespace HInj
 
             if (!MenuPauseUI.active && !PlayerPauseUI.active)
                 return;
+                
+            GUI.backgroundColor = new Color(0.35f, 0.35f, 0.35f, 0.9f); //Colors changed, possibly from unity 2017->2018 update
+            GUIStyle label = GUI.skin.GetStyle("Label");
+            label.fontSize = 13; //Size & Align now get overriden by PlayerESP
+            label.alignment = TextAnchor.MiddleLeft;
+            label.stretchHeight = false; //This now gets forced true when holding a gun
 
             MainMenuSize = GUI.Window(15, MainMenuSize, Menu_Main, "<size=12>BoCheat</size>");
 
