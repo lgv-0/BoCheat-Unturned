@@ -87,6 +87,9 @@ namespace HInj
 
             //Fix the credit menu
             Toolkit.PatchCreditMenu();
+			
+			//Unlock achievements
+            Toolkit.UnlockAchievements();
 
             Toolkit.GetFields();
 

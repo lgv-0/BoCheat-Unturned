@@ -1,4 +1,5 @@
 ﻿using SDG.Unturned;
+using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
@@ -20,8 +21,9 @@ namespace HInj
             Lift = typeof(VehicleAsset).GetField("_lift", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
         }
 
-        public InteractableVehicle LastVehicHandle;
-        public EEngine LastVehicEngine;
+        static InteractableVehicle LastVehicHandle;
+        static List<Collider> Colliders = new List<Collider>();
+        static EEngine LastVehicEngine;
 
         //Called every tick
         public void Update()
@@ -42,6 +44,13 @@ namespace HInj
             if (Player.player.movement?.getVehicle() != null)
             {
                 InteractableVehicle x = Player.player.movement.getVehicle();
+
+                if (Global.VehicleSettings.Fly || Global.VehicleSettings.Ping)
+                    if (LastVehicHandle == null)
+                    {
+                        LastVehicHandle = x;
+                        LastVehicEngine = x.asset.engine;
+                    }
 
                 if (Global.VehicleSettings.Fly)
                     SetFly(x);
@@ -68,7 +77,11 @@ namespace HInj
                     }
 
                     foreach (Collider p in x.gameObject.GetComponentsInChildren<Collider>())
-                        p.enabled = false;
+                        if (p.enabled)
+                        {
+                            Colliders.Add(p);
+                            p.enabled = false;
+                        }
                 }
             }
             else if (LastVehicHandle != null)
@@ -76,20 +89,16 @@ namespace HInj
                 Engine.SetValue(LastVehicHandle.asset, LastVehicEngine);
                 Lift.SetValue(LastVehicHandle.asset, 0f);
                 hasLockMouse.SetValue(LastVehicHandle.asset, false);
-                foreach (Collider p in LastVehicHandle.gameObject.GetComponentsInChildren<Collider>())
-                    p.enabled = true;
+                foreach (Collider p in Colliders)
+                    if (p != null)
+                        p.enabled = true;
+                Colliders.Clear();
                 LastVehicHandle = null;
             }
         }
 
         public void SetFly(InteractableVehicle pass)
         {
-            if (LastVehicHandle == null)
-            {
-                LastVehicHandle = pass;
-                LastVehicEngine = pass.asset.engine;
-            }
-
             //This could use work
             Engine.SetValue(pass.asset, EEngine.PLANE);
             hasLockMouse.SetValue(pass.asset, true);
