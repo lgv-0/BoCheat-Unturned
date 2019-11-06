@@ -33,9 +33,9 @@ namespace HInj
             {
                 if (i.player == Player.player)
                     continue;
-                if (i.player.quests.groupID == Player.player.quests.groupID)
-                    continue;
                 if (i.player.life.isDead)
+                    continue;
+                if (!Friend.isTarget(i))
                     continue;
 
                 float distance = Vector3.Distance(i.player.transform.position, position);

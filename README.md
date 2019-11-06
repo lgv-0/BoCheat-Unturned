@@ -9,7 +9,7 @@ This project heavily relies on [Harmony](https://github.com/pardeike/Harmony/).
 This DLL needs to be compiled, then loaded to the game, and you need to call the [Main.Yo](https://github.com/lgv-0/BoCheat-Unturned/blob/master/HInj/HInj/Main.cs#L116-L126) function at least once. There's a bad check to detect if it's called multiple times, in which it will ignore further calls.
 
 ## Usage
-Once loaded, the menu will be visible on the escape/pause menu's. In order to properly use the cheat, you MUST be in a group on the server you're on, otherwise visuals, map reveal, aimbot, etc. will not function properly.
+Once loaded, the menu will be visible on the escape/pause menu's. Group Members are default ignored by the cheat, optionally ignore steam friends too.
 
 Chat commands are also available [here](https://github.com/lgv-0/BoCheat-Unturned/blob/master/HInj/HInj/Hooks/sendChat/Hold.cs#L28).
 
@@ -32,6 +32,7 @@ ___
   - Etc
     - Force Headshot
     - No Drop
+	- Ignore Steam Friends
 ___
 - Visuals
   - Players

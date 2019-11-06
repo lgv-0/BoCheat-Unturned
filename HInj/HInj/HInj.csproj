@@ -97,6 +97,7 @@
     <Compile Include="Draw_Ex\Drawing_Items.cs" />
     <Compile Include="Draw_Ex\Drawing_Nightvision.cs" />
     <Compile Include="Draw_Ex\Drawing_Players.cs" />
+    <Compile Include="Friend.cs" />
     <Compile Include="Hooks\AskScreenshot\Hold.cs" />
     <Compile Include="Hooks\Ballistics\Hold.cs" />
     <Compile Include="Hooks\DoorAnimation\Hold.cs" />

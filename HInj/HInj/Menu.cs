@@ -9,11 +9,11 @@ namespace HInj
     public class Menu : MonoBehaviour
     {
         public static Rect MainMenuSize = new Rect(10, 10, 150, 130);
-        public static Rect AimbotMenuSize = new Rect(160, 10, 200, 190);
+        public static Rect AimbotMenuSize = new Rect(160, 10, 200, 220);
         public static Rect VisualsMenuSize = new Rect(360, 10, 200, 300);
         public static Rect MiscMenuSize = new Rect(560, 10, 160, 310);
         public static Rect VehicleMenuSize = new Rect(720, 10, 130, 195);
-        public static Rect ItemMenuSize = new Rect(10, 200, 160, 400);
+        public static Rect ItemMenuSize = new Rect(10, 230, 160, 400);
 
         public void OnGUI()
         {
@@ -83,6 +83,8 @@ namespace HInj
             Global.AimSettings.ForceHit = GUILayout.Toggle(Global.AimSettings.ForceHit, "Force Hit");
 
             Global.AimSettings.NoDrop = GUILayout.Toggle(Global.AimSettings.NoDrop, "No Drop");
+
+            Global.AimSettings.ignoreSteamFriends = GUILayout.Toggle(Global.AimSettings.ignoreSteamFriends, "Ignore Steam Friends");
 
             Global.AimSettings.RBypassOne = GUILayout.Toggle(Global.AimSettings.RBypassOne, "Rage-Bypass 1");
 
@@ -201,7 +203,7 @@ namespace HInj
             GUILayout.EndVertical();
         }
 
-        public static Rect iFind = new Rect(170, 340, 330, 260);
+        public static Rect iFind = new Rect(170, 370, 330, 260);
         public static string rt = "I-name/ID", rt2 = "3";
         Vector2 scrollPos;
         void ItemSearchMenu(int id)

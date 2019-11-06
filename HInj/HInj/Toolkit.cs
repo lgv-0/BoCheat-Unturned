@@ -96,7 +96,7 @@ namespace HInj
                     x[uhwhy].representingChatMessage = p;
         }
 		
-		//Force all achievements, will also give "graduation cap" achievement item
+        //Force all achievements, will also give "graduation cap" achievement item
         public static void UnlockAchievements()
         {
             string[] Achievements = new string[] { "Wheel", "Hawaii", "PEI", "Russia", "Yukon", "Washington", "Peaks", "Quest", "Ensign",

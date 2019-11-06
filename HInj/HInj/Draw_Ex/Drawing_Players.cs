@@ -11,10 +11,9 @@ namespace HInj
             {
                 if (i.player == Player.player)
                     continue;
-                //Ensure player is not in our group
-                if (i.player.quests.groupID == Player.player.quests.groupID)
-                    continue;
                 if (i.player.life.isDead)
+                    continue;
+                if (!Friend.isTarget(i))
                     continue;
 
                 float dist = Vector3.Distance(i.player.transform.position, Player.player.transform.position);

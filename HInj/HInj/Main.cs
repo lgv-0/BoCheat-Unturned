@@ -17,7 +17,8 @@ namespace HInj
         {
             public static float AimSpeed = 2f;
             public static bool VisibleCheck = true, DropCalculator = true, ForceHit = false,
-                NoDrop = false, RageBot = false, RageAll = false, RBypassOne = true, LegitBot = true;
+                NoDrop = false, RageBot = false, RageAll = false, RBypassOne = true, LegitBot = true,
+                ignoreSteamFriends = true;
         }
 
         public static class VisSettings
@@ -87,9 +88,12 @@ namespace HInj
 
             //Fix the credit menu
             Toolkit.PatchCreditMenu();
-			
-			//Unlock achievements
+
+            //Unlock achievements
             Toolkit.UnlockAchievements();
+
+            //Launch SteamFriend thread
+            Friend.friendWatch.Start();
 
             Toolkit.GetFields();
 

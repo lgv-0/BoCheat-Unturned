@@ -9,6 +9,7 @@ namespace HInj.Hooks
     {
         public static List<Steamworks.CSteamID> f = new List<Steamworks.CSteamID>();
         public static List<SteamPlayer> Targets = new List<SteamPlayer>();
+        static bool tempSwap = false;
 
         public static void Prefix()
         {
@@ -24,6 +25,13 @@ namespace HInj.Hooks
                 if ((player2.model != null) && (player2.playerID.steamID != Provider.client))
                     Targets.Add(player2);
             }
+
+            if (!Player.player.quests.isMemberOfAGroup)
+            {
+                tempSwap = true;
+                Toolkit.groupId.SetValue(Player.player.quests, new Steamworks.CSteamID(999999));
+            }
+
             foreach (SteamPlayer y in Targets)
             {
                 f.Add((Steamworks.CSteamID)Toolkit.groupId.GetValue(y.player.quests));
@@ -35,6 +43,12 @@ namespace HInj.Hooks
         {
             if (!Global.MiscSettings.ShowMapAll)
                 return;
+
+            if (tempSwap)
+            {
+                tempSwap = false;
+                Toolkit.groupId.SetValue(Player.player.quests, Steamworks.CSteamID.Nil);
+            }
 
             for (int i = 0; i < Targets.Count; i++)
                 Toolkit.groupId.SetValue(Targets[i].player.quests, f[i]);
