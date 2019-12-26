@@ -95,19 +95,12 @@ namespace HInj
                 if (x[uhwhy].representingChatMessage.contents.Contains(Match))
                     x[uhwhy].representingChatMessage = p;
         }
-		
+
         //Force all achievements, will also give "graduation cap" achievement item
         public static void UnlockAchievements()
         {
-            string[] Achievements = new string[] { "Wheel", "Hawaii", "PEI", "Russia", "Yukon", "Washington", "Peaks", "Quest", "Ensign",
-                                        "Lieutenant", "Major", "Villain", "Paragon", "Offense", "Defense", "Support", "Mastermind",
-                                        "Berries", "Bridge", "Experienced", "Hoarder", "Outdoors", "Psychopath", "Murderer",
-                                        "Survivor", "Unturned", "Hardened", "Forged", "Scavenger", "Camper", "Schooled",
-                                        "Accident_Prone", "Educated", "Fishing", "Crafting", "Farming", "Headshot", "Sharpshooter",
-                                        "Hiking", "Roadtrip", "Champion", "Fortified", "Soulcrystal", "Mk2", "Boss_Magma", "Zweihander"};
-
-            foreach (string p in Achievements)
-                Steamworks.SteamUserStats.SetAchievement(p);
+            for (uint p = 0; p < Steamworks.SteamUserStats.GetNumAchievements();)
+                Steamworks.SteamUserStats.SetAchievement(Steamworks.SteamUserStats.GetAchievementName(p++));
 
             Steamworks.SteamUserStats.StoreStats();
         }

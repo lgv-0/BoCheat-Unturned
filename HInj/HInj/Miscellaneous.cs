@@ -35,6 +35,11 @@ namespace HInj
             ass.shakeMin_y = 0f;
             ass.shakeMin_z = 0f;
 
+            //No Spread
+            ass.spreadAim = 0f;
+            ass.spreadHip = 0f;
+            PlayerUI.updateCrosshair(0f);
+
             //Shake recovery
             ass.recover_x = 0f;
             ass.recover_y = 0f;
@@ -131,12 +136,11 @@ namespace HInj
 
             //Hide fog
             if (Global.MiscSettings.NoFog)
-                MainCamera.instance.GetComponent<GlobalFogCs>().enabled = false;
+                MainCamera.instance.GetComponent<GlobalFog2>().enabled = false;
 
             //Skin changer
             Skins.SkinUpd();
 
-            //@stagfag stole this
             if (Global.MiscSettings.Jesus)
             {
                 Player.player.movement.itemGravityMultiplier = 0f;

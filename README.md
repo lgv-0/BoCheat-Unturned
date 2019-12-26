@@ -92,6 +92,7 @@ ___
   - Jesus
   - Player Teleport
   - Chat Spammer
+  - Achievement Unlocker
   - __Skin Changer__
     - Items will be added to in-game inventory, from there, equip them, and they will automatically apply in-game.
 

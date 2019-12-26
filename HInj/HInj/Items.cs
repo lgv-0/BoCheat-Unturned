@@ -38,7 +38,7 @@ namespace HInj
                     return;
 
             List<InteractableItem> itemsInRadius;
-            GetItemsInRadius(out itemsInRadius);
+            GetItemsInRadius(out itemsInRadius, 8, 395f);
 
             if (itemsInRadius.Count < 1)
                 return;
@@ -297,7 +297,7 @@ namespace HInj
             return true;
         }
 
-        public void GetItemsInRadius(out List<InteractableItem> items)
+        public static void GetItemsInRadius(out List<InteractableItem> items, int RegionReach, float MaxMagnitude)
         {
             items = new List<InteractableItem>();
 
@@ -307,15 +307,15 @@ namespace HInj
                 for (int y = 0; y < 64; y++)
                     if (ItemManager.regions[x, y] != null)
                         if (ItemManager.regions[x, y].drops.Count > 0)
-                            if (Player.player.movement.region_x - x < 8 || Player.player.movement.region_x - x > 8)
-                                if (Player.player.movement.region_y - y < 8 || Player.player.movement.region_y - y > 8)
-                                    regionsInRadius.Add(ItemManager.regions[x, y]);
+                            if ((x <= Player.player.movement.region_x && y <= Player.player.movement.region_y && (Player.player.movement.region_x - x) <= RegionReach && (Player.player.movement.region_y - y) <= RegionReach) ||
+                            (x >= Player.player.movement.region_x && y >= Player.player.movement.region_y && (x - Player.player.movement.region_x) <= RegionReach && (y - Player.player.movement.region_y) <= RegionReach))
+                                regionsInRadius.Add(ItemManager.regions[x, y]);
 
             foreach (ItemRegion x in regionsInRadius)
                 foreach (ItemDrop y in x.drops)
                     if (!y.interactableItem.checkInteractable() || !y.interactableItem.checkUseable())
                         continue;
-                    else if ((y.interactableItem.transform.position - Player.player.transform.position).sqrMagnitude < 395f)
+                    else if ((y.interactableItem.transform.position - Player.player.transform.position).sqrMagnitude < MaxMagnitude)
                         items.Add(y.interactableItem);
         }
 
@@ -338,11 +338,15 @@ namespace HInj
             LastPickup = Time.realtimeSinceStartup + 0.7f;
         }
 
+        [System.Serializable]
         public class itemSs
         {
             public ulong itemID;
             public string iName;
-            public int Max, rcnt;
+            public int Max;
+            [System.NonSerialized]
+            public int rcnt;
+            public itemSs() { }
             public itemSs(ulong itemid, string iname, int max)
             {
                 itemID = itemid;
