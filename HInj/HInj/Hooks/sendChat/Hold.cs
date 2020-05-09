@@ -18,7 +18,6 @@ namespace HInj.Hooks
             while (true)
             {
                 Thread.Sleep(275);
-                Console.WriteLine("Thread live");
                 if (!isSpamming)
                     continue;
                 ChatManager.instance.channel.send("askChat", ESteamCall.SERVER, ESteamPacket.UPDATE_RELIABLE_BUFFER, new object[2]
@@ -26,7 +25,6 @@ namespace HInj.Hooks
                     (byte)0,
                     spamString
                 });
-                Console.WriteLine(spamString);
             }
         }
 
