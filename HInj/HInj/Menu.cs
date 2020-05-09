@@ -142,8 +142,6 @@ namespace HInj
 
             Global.MiscSettings.ShowMapAll = GUILayout.Toggle(Global.MiscSettings.ShowMapAll, "Map reveal");
 
-            Global.MiscSettings.Jesus = GUILayout.Toggle(Global.MiscSettings.Jesus, "Jesus");
-
             Global.MiscSettings.NoSpy = GUILayout.Toggle(Global.MiscSettings.NoSpy, "No Spy");
 
             Global.MiscSettings.CleanSpy = GUILayout.Toggle(Global.MiscSettings.CleanSpy, "Clean Spy");

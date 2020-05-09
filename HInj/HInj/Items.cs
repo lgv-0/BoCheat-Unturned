@@ -333,7 +333,7 @@ namespace HInj
 
         public void GrabItem(InteractableItem s)
         {
-            Toolkit.SendMessageTip("Picking up: " + s.asset.itemName, true);
+            Toolkit.SendMessageTip("Picking up: " + s.asset.itemName);
             s.use();
             LastPickup = Time.realtimeSinceStartup + 0.7f;
         }

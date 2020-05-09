@@ -70,22 +70,6 @@ namespace HInj
         }
 
         static int salvCheck = 0;
-        public void CheckSalvage()
-        {
-            if (!(bool)isHoldingKey.GetValue(null))
-            {
-                lastKeyDown.SetValue(null, 0f);
-                return;
-            }
-
-            if ((Time.realtimeSinceStartup - (float)lastKeyDown.GetValue(null)) > 0.65f)
-            {
-                isHoldingKey.SetValue(null, false);
-                lastKeyDown.SetValue(null, 0f);
-                if (!PlayerUI.window.showCursor && (PlayerInteract.interactable2 != null))
-                    PlayerInteract.interactable2.use();
-            }
-        }
 
         //Called every tick
         public void Update()
@@ -132,7 +116,7 @@ namespace HInj
             //Fast Salvage
             if (Global.MiscSettings.FastSalvage)
                 if (salvCheck++ > 60)
-                    CheckSalvage();
+                    Player.player.interact.tellSalvageTimeOverride(Provider.server, 0.4f);
 
             //Hide fog
             if (Global.MiscSettings.NoFog)
@@ -140,25 +124,6 @@ namespace HInj
 
             //Skin changer
             Skins.SkinUpd();
-
-            if (Global.MiscSettings.Jesus)
-            {
-                Player.player.movement.itemGravityMultiplier = 0f;
-
-                if (Input.GetKey(KeyCode.W))
-                    Player.player.transform.position += Camera.main.transform.forward * 0.6f;
-                if (Input.GetKey(KeyCode.S))
-                    Player.player.transform.position -= Camera.main.transform.forward * 0.6f;
-                if (Input.GetKey(KeyCode.KeypadMinus))
-                    Player.player.transform.position += Camera.main.transform.up * 0.6f;
-                if (Input.GetKey(KeyCode.KeypadPlus))
-                    Player.player.transform.position -= Camera.main.transform.up * 0.6f;
-            }
-            else if (Player.player.movement.itemGravityMultiplier == 0f)
-            {
-                ItemCloudAsset itemCloudAsset = Player.player.equipment.asset as ItemCloudAsset;
-                Player.player.movement.itemGravityMultiplier = ((itemCloudAsset != null) ? itemCloudAsset.gravity : 1f);
-            }
         }
     }
 }

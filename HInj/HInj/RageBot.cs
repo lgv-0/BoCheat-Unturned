@@ -63,13 +63,13 @@ namespace HInj
                 if (FocusTarget != null)
                 {
                     FocusTarget = null;
-                    Toolkit.SendMessageTip("Lost Lock", false);
+                    Toolkit.SendMessageTip("Lost Lock");
                 }
                 return;
             }
 
             FocusTarget = targ;
-            Toolkit.SendMessageTip("Aimbot Lock: " + targ.playerID.characterName, false);
+            Toolkit.SendMessageTip("Aimbot Lock: " + targ.playerID.characterName);
 
             if (!Global.AimSettings.RBypassOne)
             {

@@ -38,7 +38,7 @@ namespace HInj
         {
             public static bool ForceThirdperson = true, ForceSatellite = true, NoRecoilSway = true, BypassTimers = true,
                 FastSalvage = true, AlwaysDay = false, ForceCompass = true, NoFog = true, ShowMapAll = false, NoSpy = false,
-                CleanSpy = true, Jesus = false;
+                CleanSpy = true;
         }
 
         public static class ItemSettings

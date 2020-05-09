@@ -23,34 +23,9 @@ namespace HInj
         }
 
         //Sends a tooltip message at the bottom of the player screen
-        public static void SendMessageTip(string Message, bool FullClear)
+        public static void SendMessageTip(string Message)
         {
-            PlayerUI.messageBox2.sizeOffset_Y = 50;
-            PlayerUI.messageBox2.positionOffset_Y = -80 - PlayerUI.messageBox2.sizeOffset_Y;
-            PlayerUI.messageBox2.isVisible = true;
-
-            TooltipLastMessage.SetValue(null, Time.realtimeSinceStartup);
-
-            TooltipIsMessaged.SetValue(null, true);
-
-            SleekLabel u = (SleekLabel)TooltipMessageLabel2.GetValue(null);
-            u.text = Message;
-            TooltipMessageLabel2.SetValue(null, u);
-
-            if (FullClear)
-            {
-                SleekImageTexture IconText = (SleekImageTexture)TooltipMessageIcon2.GetValue(null);
-                IconText.isVisible = false;
-                TooltipMessageIcon2.SetValue(null, IconText);
-
-                SleekProgress Prog = (SleekProgress)TooltipMessageProgress2_0.GetValue(null);
-                Prog.isVisible = false;
-                TooltipMessageProgress2_0.SetValue(null, Prog);
-
-                Prog = (SleekProgress)TooltipMessageProgress2_1.GetValue(null);
-                Prog.isVisible = false;
-                TooltipMessageProgress2_1.SetValue(null, Prog);
-            }
+            PlayerUI.message(EPlayerMessage.NPC_CUSTOM, Message);
         }
 
         public static void PatchCreditMenu()
