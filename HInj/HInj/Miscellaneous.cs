@@ -140,25 +140,6 @@ namespace HInj
 
             //Skin changer
             Skins.SkinUpd();
-
-            if (Global.MiscSettings.Jesus)
-            {
-                Player.player.movement.itemGravityMultiplier = 0f;
-
-                if (Input.GetKey(KeyCode.W))
-                    Player.player.transform.position += Camera.main.transform.forward * 0.6f;
-                if (Input.GetKey(KeyCode.S))
-                    Player.player.transform.position -= Camera.main.transform.forward * 0.6f;
-                if (Input.GetKey(KeyCode.KeypadMinus))
-                    Player.player.transform.position += Camera.main.transform.up * 0.6f;
-                if (Input.GetKey(KeyCode.KeypadPlus))
-                    Player.player.transform.position -= Camera.main.transform.up * 0.6f;
-            }
-            else if (Player.player.movement.itemGravityMultiplier == 0f)
-            {
-                ItemCloudAsset itemCloudAsset = Player.player.equipment.asset as ItemCloudAsset;
-                Player.player.movement.itemGravityMultiplier = ((itemCloudAsset != null) ? itemCloudAsset.gravity : 1f);
-            }
         }
     }
 }

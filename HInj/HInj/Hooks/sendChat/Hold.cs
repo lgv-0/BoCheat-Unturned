@@ -12,11 +12,13 @@ namespace HInj.Hooks
         public static Thread spammer = new Thread(xThread);
         static string spamString = "";
         static bool isSpamming = false;
+
         private static void xThread()
         {
             while (true)
             {
                 Thread.Sleep(275);
+                Console.WriteLine("Thread live");
                 if (!isSpamming)
                     continue;
                 ChatManager.instance.channel.send("askChat", ESteamCall.SERVER, ESteamPacket.UPDATE_RELIABLE_BUFFER, new object[2]
@@ -24,6 +26,7 @@ namespace HInj.Hooks
                     (byte)0,
                     spamString
                 });
+                Console.WriteLine(spamString);
             }
         }
 
