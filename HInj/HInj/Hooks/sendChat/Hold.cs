@@ -1,5 +1,6 @@
 using Harmony;
 using SDG.Unturned;
+using System;
 using System.Threading;
 using UnityEngine;
 
@@ -96,7 +97,7 @@ namespace HInj.Hooks
             else if (text.Contains("_hide"))
             {
                 Toolkit.HideChats("BoCheat");
-                Toolkit.SendMessageTip("Missing Space", true);
+                Toolkit.SendMessageTip("Missing Space");
             }
             else
             {

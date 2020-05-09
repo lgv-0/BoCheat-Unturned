@@ -166,7 +166,7 @@ namespace HInj
                         Toolkit.HideChats("BoCheat");
                         if (Global.AimSettings.RageBot)
                         {
-                            Toolkit.SendMessageTip("Missing Space", true);
+                            Toolkit.SendMessageTip("Missing Space");
                             Global.AimSettings.RageBot = false;
                             System.Console.WriteLine("Auto disabling ragebot for spy");
                         }
