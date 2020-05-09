@@ -70,22 +70,6 @@ namespace HInj
         }
 
         static int salvCheck = 0;
-        public void CheckSalvage()
-        {
-            if (!(bool)isHoldingKey.GetValue(null))
-            {
-                lastKeyDown.SetValue(null, 0f);
-                return;
-            }
-
-            if ((Time.realtimeSinceStartup - (float)lastKeyDown.GetValue(null)) > 0.65f)
-            {
-                isHoldingKey.SetValue(null, false);
-                lastKeyDown.SetValue(null, 0f);
-                if (!PlayerUI.window.showCursor && (PlayerInteract.interactable2 != null))
-                    PlayerInteract.interactable2.use();
-            }
-        }
 
         //Called every tick
         public void Update()
@@ -132,7 +116,7 @@ namespace HInj
             //Fast Salvage
             if (Global.MiscSettings.FastSalvage)
                 if (salvCheck++ > 60)
-                    CheckSalvage();
+                    Player.player.interact.tellSalvageTimeOverride(Provider.server, 0.4f);
 
             //Hide fog
             if (Global.MiscSettings.NoFog)
