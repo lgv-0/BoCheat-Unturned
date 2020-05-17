@@ -120,7 +120,7 @@ namespace HInj
 
             //Hide fog
             if (Global.MiscSettings.NoFog)
-                MainCamera.instance.GetComponent<GlobalFog2>().enabled = false;
+                UnityEngine.RenderSettings.fog = false;
 
             //Skin changer
             Skins.SkinUpd();

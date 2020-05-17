@@ -78,7 +78,7 @@ namespace HInj
                 Ray ray = new Ray(Player.player.look.aim.position, Player.player.look.aim.forward);
                 RaycastInfo raycastInfo = DamageTool.raycast(ray, 2f, RayMasks.DAMAGE_CLIENT);
                 if ((UnityEngine.Object)raycastInfo.player != (UnityEngine.Object)null)
-                    Player.player.input.sendRaycast(raycastInfo);
+                    Player.player.input.sendRaycast(raycastInfo, ERaycastInfoUsage.Gun);
             }
         }
     }

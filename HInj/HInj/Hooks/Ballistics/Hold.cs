@@ -51,8 +51,8 @@ namespace HInj.Hooks
                         {
                             if (!((info.steps * __instance.equippedGunAsset.ballisticTravel) < dst))
                             {
-                                Player.player.input.sendRaycast(info2);
-                                Player.player.input.sendRaycast(info2);
+                                Player.player.input.sendRaycast(info2, ERaycastInfoUsage.Gun);
+                                Player.player.input.sendRaycast(info2, ERaycastInfoUsage.Gun);
                                 info.steps = 254;
                                 goto prx;
                             }
@@ -139,7 +139,7 @@ namespace HInj.Hooks
                                 if (ResourceManager.tryGetRegion(info2.transform, out num5, out num6, out num7))
                                 {
                                     ResourceSpawnpoint spawnpoint = ResourceManager.getResourceSpawnpoint(num5, num6, num7);
-                                    if (((spawnpoint != null) && !spawnpoint.isDead) && (spawnpoint.asset.bladeID == ((ItemWeaponAsset)__instance.player.equipment.asset).bladeID))
+                                    if (spawnpoint != null && !spawnpoint.isDead && ((ItemWeaponAsset)__instance.player.equipment.asset).hasBladeID(spawnpoint.asset.bladeID))
                                     {
                                         if (nONE == EPlayerHit.NONE)
                                             nONE = EPlayerHit.BUILD;
@@ -202,7 +202,7 @@ namespace HInj.Hooks
                                     if ((nONE == EPlayerHit.CRITICAL) && Provider.provider.statisticsService.userStatisticsService.getStatistic("Headshots", out num9))
                                         Provider.provider.statisticsService.userStatisticsService.setStatistic("Headshots", (int)(num9 + 1));
                                 }
-                                __instance.player.input.sendRaycast(info2);
+                                __instance.player.input.sendRaycast(info2, ERaycastInfoUsage.Gun);
                                 info.steps = 0xfe;
                             }
                         }
