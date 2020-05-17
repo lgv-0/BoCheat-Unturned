@@ -12,6 +12,9 @@ namespace HInj.Hooks
             if (!Global.MiscSettings.NoRecoilSway || Global.AllOff)
                 return true;
 
+            if (!(Player.player?.movement != null))
+                return true;
+
             //Force aim specifically to have no sway
             if (Player.player.movement.getVehicle() != null && Player.player.movement.getVehicle().passengers[Player.player.movement.getSeat()].turret != null && Player.player.movement.getVehicle().passengers[Player.player.movement.getSeat()].turret.useAimCamera)
             {

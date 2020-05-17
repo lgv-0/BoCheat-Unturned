@@ -3,10 +3,10 @@ using SDG.Unturned;
 
 namespace HInj.Hooks
 {
-    [HarmonyPatch(typeof(PlayerInput), "sendRaycast", new System.Type[] { typeof(RaycastInfo) })]
+    [HarmonyPatch(typeof(PlayerInput), "sendRaycast", new System.Type[] { typeof(RaycastInfo), typeof(ERaycastInfoUsage) })]
     public class sendRaycast
     {
-        public static bool Prefix(ref RaycastInfo info)
+        public static bool Prefix(ref RaycastInfo info, ref ERaycastInfoUsage usage)
         {
             if (Global.AllOff)
                 return true;

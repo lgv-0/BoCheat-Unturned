@@ -1,13 +1,14 @@
 using Harmony;
 using SDG.Unturned;
+using System;
+using UnityEngine;
 
 namespace HInj.Hooks
 {
     [HarmonyPatch(typeof(LevelLighting), "updateLighting")]
     public class updLighting
     {
-        public static float Btime = 0;
-        public static void Prefix(ref float ____time)
+        public static void Prefix(ref float ___dayVolume, ref float ___nightVolume)
         {
             if ((!Global.MiscSettings.AlwaysDay && !Global.VisSettings.NightMode) || Global.AllOff || askScreenshot.NeedingSpy)
             {
@@ -16,20 +17,13 @@ namespace HInj.Hooks
                 return;
             }
 
-            Btime = ____time;
-
-            if (Global.MiscSettings.AlwaysDay)
-                ____time = (uint)(LightingManager.cycle * LevelLighting.transition);
-            else if (Global.VisSettings.NightMode)
-                ____time = 0.75f;
+            Console.WriteLine($"{LevelLighting.time} < {LevelLighting.bias} < {LevelLighting.azimuth} < {LevelLighting.transition}");
         }
 
-        public static void Postfix(ref float ____time)
+        public static void Postfix()
         {
             if ((!Global.MiscSettings.AlwaysDay && !Global.VisSettings.NightMode) || Global.AllOff)
                 return;
-
-            ____time = Btime;
         }
     }
 }
