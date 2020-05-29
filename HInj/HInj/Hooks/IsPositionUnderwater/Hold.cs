@@ -36,8 +36,9 @@ namespace HInj.Hooks
 
         public static void Postfix([HarmonyArgument("position")] Vector3 position)
         {
-            if (Player.player.movement.getVehicle() != null && !Global.VehicleSettings.Sink)
-                return;
+            if (Player.player != null && Player.player.movement != null)
+                if (Player.player.movement.getVehicle() != null && !Global.VehicleSettings.Sink)
+                    return;
 
             LevelLighting.seaLevel = reg;
         }

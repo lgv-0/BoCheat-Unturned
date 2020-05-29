@@ -153,8 +153,10 @@ namespace HInj
                             m_unFlags = 0,
                             m_unQuantity = 1
                         });
+                    
+                    //Removed 5/16/2020
+                    //__instance.consolidateStacks();
 
-                    __instance.consolidateStacks();
                     __instance.onInventoryRefreshed?.Invoke();
                     __instance.isInventoryAvailable = true;
                     Provider.isLoadingInventory = false;
