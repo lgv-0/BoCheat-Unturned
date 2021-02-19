@@ -1,7 +1,9 @@
 # BoCheat-Unturned
 Unturned Fully-Featured Cheat Base
 ## Information
-This project is not finished or finalized, and some code is redacted as it is being refined before being pushed into GitHub.
+
+### Given the age of Unturned, and the player base shifting, this project will no longer be developed. Last merge is accurately the last time the cheat was fully functional, with features gradually losing functionality over the next months.
+
 This project heavily relies on [Harmony](https://github.com/pardeike/Harmony/).
 
 
